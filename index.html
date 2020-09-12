@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <brewery-app></brewery-app>
+
+    <script type="module">
+      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+
+      class BreweryApp extends LitElement {
+        render() {
+          return html` My brewery app `;
+        }
+      }
+
+      customElements.define('brewery-app', BreweryApp);
+    </script>
+  </body>
+</html>
