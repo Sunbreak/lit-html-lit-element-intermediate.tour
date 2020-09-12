@@ -9,6 +9,7 @@
       class BreweryApp extends LitElement {
         static get properties() {
           return {
+            loading: { type: Boolean },
             breweries: { type: Array },
           };
         }
@@ -22,12 +23,18 @@
         }
 
         async _fetchBreweries() {
+          this.loading = true;
           const response = await fetch('https://api.openbrewerydb.org/breweries');
           const jsonResponse = await response.json();
           this.breweries = jsonResponse;
+          this.loading = false;
         }
 
         render() {
+          if (this.loading) {
+            return html`<p>Loading...</p>`;
+          }
+
           return html`
             <pre>${JSON.stringify(this.breweries, null, 2)}</pre>
           `;
